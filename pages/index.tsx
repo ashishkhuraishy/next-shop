@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link'
 import Head from 'next/head';
 import React from 'react';
 import Title from '../components/title';
@@ -17,7 +18,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   };
 };
 
-const HomePage: React.FC<HomePageProps> = ( { products} ) => {
+const HomePage: React.FC<HomePageProps> = ({ products }) => {
   console.log('[HomePage] render:', products)
   return (
     <>
@@ -31,7 +32,9 @@ const HomePage: React.FC<HomePageProps> = ( { products} ) => {
         <ul>
           {products.map((product) => (
             <li key={product.id} >
-              {product.title}
+              <Link href={`/products/${product.id}`}>
+                <a>{product.title}</a>
+              </Link>
             </li>
           ))}
         </ul>
